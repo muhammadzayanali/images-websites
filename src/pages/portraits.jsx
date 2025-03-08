@@ -23,7 +23,7 @@ const Portraits = () => {
   const [imageHeights, setImageHeights] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Preload images before displaying content
+
   useEffect(() => {
     let loadedCount = 0;
     images.forEach((src) => {
@@ -38,21 +38,20 @@ const Portraits = () => {
     });
   }, []);
 
-  // Adjust image heights dynamically based on screen width
   useEffect(() => {
     const heights = images.map(() => {
       if (window.innerWidth >= 2560) {
-        return Math.floor(Math.random() * 250) + 550; // Larger images for ultra-wide screens (550-800px)
+        return Math.floor(Math.random() * 250) + 550;
       } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
-        return Math.floor(Math.random() * 200) + 400; // Medium screens (400-600px)
+        return Math.floor(Math.random() * 200) + 400; 
       }
-      return Math.floor(Math.random() * 170) + 310; // Default size (310-480px)
+      return Math.floor(Math.random() * 170) + 310; 
     });
 
     setImageHeights(heights);
   }, [screenWidth]);
 
-  // Handle screen resizing
+
   useEffect(() => {
     const handleResize = () => {
       clearTimeout(handleResize.timeout);
@@ -73,12 +72,10 @@ const Portraits = () => {
 
       <main className="p-4">
         {isLoading ? (
-          // ✅ Loader while images load
           <div className="flex justify-center items-center h-screen">
             <div className="w-16 h-16 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
           </div>
         ) : (
-          // ✅ Content after images are loaded
           <div className="mt-5">
             <ResponsiveMasonry
               key={screenWidth}
@@ -113,7 +110,7 @@ const Portraits = () => {
                       effect="blur"
                       className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                       style={{
-                        height: "100%", // Match the motion div height
+                        height: "100%",
                         width: "100%",
                         objectFit: "cover",
                       }}
@@ -125,7 +122,6 @@ const Portraits = () => {
           </div>
         )}
 
-        {/* Social Media Links */}
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}

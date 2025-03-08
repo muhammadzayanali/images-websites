@@ -39,7 +39,7 @@ const Header = () => {
     { label: "Automotive", to: "/automotive" },
     { label: "Portraits", to: "/portraits" },
     { label: "Food", to: "/food" },
-    { label: "Architectural", to: "/architecture" },
+    { label: "Architectural", to: "/architectural" },
     { label: "Prints", to: "/print" },
     { label: "About", to: "/about" },
   ];
