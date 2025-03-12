@@ -27,30 +27,25 @@ const Food = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const startTime = Date.now();
     let loadedCount = 0;
-
     images.forEach((src) => {
       const img = new Image();
       img.src = src;
       img.onload = () => {
         loadedCount++;
         if (loadedCount === images.length) {
-          const elapsedTime = Date.now() - startTime;
-          const delay = Math.max(2000 - elapsedTime, 0);
-          setTimeout(() => setIsLoading(false), delay);
+          setTimeout(() => setIsLoading(false), 550);
         }
       };
     });
-
-    setTimeout(() => setIsLoading(false), 2000);
   }, []);
 
   useEffect(() => {
     const heights = images.map(() => {
-      if (window.innerWidth >= 2560) return Math.floor(Math.random() * 250) + 550; 
-      if (window.innerWidth >= 768 && window.innerWidth < 1280) return Math.floor(Math.random() * 200) + 400; 
-      return Math.floor(Math.random() * 170) + 310; 
+      if (window.innerWidth <= 425) return "auto"; // Preserve original height on small screens
+      if (window.innerWidth >= 2560) return Math.floor(Math.random() * 250) + 550;
+      if (window.innerWidth >= 768 && window.innerWidth < 1280) return Math.floor(Math.random() * 200) + 400;
+      return Math.floor(Math.random() * 170) + 310;
     });
 
     setImageHeights(heights);
@@ -99,18 +94,22 @@ const Food = () => {
                     key={index}
                     className="overflow-hidden md:p-0 p-2"
                     style={{
-                      height: `${imageHeights[index]}px`,
-                      width: "100%", 
+                      height: screenWidth <= 425 ? "auto" : `${imageHeights[index]}px`,
+                      width: "100%",
                     }}
+                    initial={{ opacity: 0, y: 100 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    viewport={{ once: true }}
                   >
                     <LazyLoadImage
                       src={src}
                       alt={`Gallery item ${index + 1}`}
                       effect="blur"
-                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      className="w-full object-cover hover:scale-110 transition-transform duration-300"
                       style={{
-                        height: "100%", 
-                        width: "100%",  
+                        height: screenWidth <= 425 ? "auto" : "100%",
+                        width: "100%",
                         objectFit: "cover",
                       }}
                     />
@@ -124,8 +123,8 @@ const Food = () => {
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }} 
-          viewport={{ once: true }} 
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
         >
           <div>
             <ul>

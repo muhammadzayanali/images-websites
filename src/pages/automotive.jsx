@@ -50,6 +50,7 @@ const Event = () => {
 
   useEffect(() => {
     const heights = images.map(() => {
+      if (window.innerWidth <= 425) return "auto"; // Preserve original height
       if (window.innerWidth >= 2560) return Math.floor(Math.random() * 250) + 550;
       if (window.innerWidth >= 768 && window.innerWidth < 1280) return Math.floor(Math.random() * 200) + 400;
       return Math.floor(Math.random() * 170) + 310;
@@ -106,7 +107,7 @@ const Event = () => {
                     key={index}
                     className="overflow-hidden md:p-0 p-2"
                     style={{
-                      height: `${imageHeights[index]}px`,
+                      height: screenWidth <= 425 ? "auto" : `${imageHeights[index]}px`,
                       width: "100%",
                     }}
                     initial={{ opacity: 0, y: 100 }}
@@ -119,9 +120,9 @@ const Event = () => {
                       alt={`Gallery item ${index + 1}`}
                       loading="lazy"
                       effect="blur"
-                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      className="w-full object-cover hover:scale-110 transition-transform duration-300"
                       style={{
-                        height: "100%",
+                        height: screenWidth <= 425 ? "auto" : "100%",
                         width: "100%",
                         objectFit: "cover",
                       }}

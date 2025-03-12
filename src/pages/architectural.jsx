@@ -19,29 +19,26 @@ const Architecture = () => {
 
   useEffect(() => {
     const heights = images.map(() => {
-      return screenWidth >= 2560 ? Math.floor(Math.random() * 400) + 500 : Math.floor(Math.random() * 290) + 305;
+      if (window.innerWidth <= 425) return "auto"; // Keep original height on small screens
+      if (window.innerWidth >= 2560) return Math.floor(Math.random() * 400) + 500;
+      return Math.floor(Math.random() * 290) + 305;
     });
+
     setImageHeights(heights);
   }, [screenWidth]);
 
   useEffect(() => {
-    const startTime = Date.now();
     let loadedCount = 0;
-
     images.forEach((src) => {
       const img = new Image();
       img.src = src;
       img.onload = () => {
         loadedCount++;
         if (loadedCount === images.length) {
-          const elapsedTime = Date.now() - startTime;
-          const delay = Math.max(2000 - elapsedTime, 0);
-          setTimeout(() => setIsLoading(false), delay);
+          setTimeout(() => setIsLoading(false), 550);
         }
       };
     });
-
-    setTimeout(() => setIsLoading(false), 2000);
   }, []);
 
   useEffect(() => {
@@ -74,11 +71,11 @@ const Architecture = () => {
               columnsCountBreakPoints={{
                 350: 1,
                 640: 2,
-                768: 3, 
+                768: 3,
                 1024: 3,
                 1280: 4,
                 1920: 5,
-                2560: 6, 
+                2560: 6,
               }}
             >
               <Masonry gutter="10px">
@@ -87,18 +84,22 @@ const Architecture = () => {
                     key={index}
                     className="overflow-hidden md:p-0 p-2"
                     style={{
-                      height: `${imageHeights[index]}px`, 
-                      width: "100%", 
+                      height: screenWidth <= 425 ? "auto" : `${imageHeights[index]}px`,
+                      width: "100%",
                     }}
+                    initial={{ opacity: 0, y: 100 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    viewport={{ once: true }}
                   >
                     <LazyLoadImage
                       src={src}
                       alt={`Gallery item ${index + 1}`}
                       effect="blur"
-                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      className="w-full object-cover hover:scale-110 transition-transform duration-300"
                       style={{
-                        height: "100%",  
-                        width: "100%",  
+                        height: screenWidth <= 425 ? "auto" : "100%",
+                        width: "100%",
                         objectFit: "cover",
                       }}
                     />
