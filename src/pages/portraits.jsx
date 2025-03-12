@@ -39,9 +39,12 @@ const Portraits = () => {
 
   useEffect(() => {
     const heights = images.map(() => {
-      if (window.innerWidth <= 425) return "auto"; // Preserve original height
+      if (window.innerWidth <= 425) return "auto";
       if (window.innerWidth >= 2560) return Math.floor(Math.random() * 250) + 550;
-      if (window.innerWidth >= 768 && window.innerWidth < 1280) return Math.floor(Math.random() * 200) + 400;
+      if (window.innerWidth >= 2000 && window.innerWidth < 2560) return Math.floor(Math.random() * 220) + 500;
+      if (window.innerWidth >= 1600 && window.innerWidth < 2000) return Math.floor(Math.random() * 200) + 480;
+      if (window.innerWidth >= 1440 && window.innerWidth < 1600) return Math.floor(Math.random() * 180) + 450;
+      if (window.innerWidth >= 768 && window.innerWidth < 1280) return Math.floor(Math.random() * 150) + 350;
       return Math.floor(Math.random() * 170) + 310;
     });
 
@@ -72,17 +75,25 @@ const Portraits = () => {
             <div className="w-16 h-16 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
           </div>
         ) : (
-          <div className="mt-5">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mt-5"
+          >
             <ResponsiveMasonry
               key={screenWidth}
               columnsCountBreakPoints={{
                 350: 1,
                 640: 2,
-                768: 2,
+                768: 3,
                 1024: 3,
                 1280: 4,
+                1440: 4,
+                1600: 5,
                 1920: 5,
-                2560: 6,
+                2000: 5,
+                2560: 5,
               }}
             >
               <Masonry gutter="10px">
@@ -115,7 +126,7 @@ const Portraits = () => {
                 ))}
               </Masonry>
             </ResponsiveMasonry>
-          </div>
+          </motion.div>
         )}
 
         <motion.div

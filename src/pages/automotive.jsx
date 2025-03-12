@@ -50,9 +50,11 @@ const Event = () => {
 
   useEffect(() => {
     const heights = images.map(() => {
-      if (window.innerWidth <= 425) return "auto"; // Preserve original height
+      if (window.innerWidth <= 425) return "auto";
       if (window.innerWidth >= 2560) return Math.floor(Math.random() * 250) + 550;
-      if (window.innerWidth >= 768 && window.innerWidth < 1280) return Math.floor(Math.random() * 200) + 400;
+      if (window.innerWidth >= 1920 && window.innerWidth < 2560) return Math.floor(Math.random() * 220) + 500;
+      if (window.innerWidth >= 1440 && window.innerWidth < 1920) return Math.floor(Math.random() * 200) + 450;
+      if (window.innerWidth >= 768 && window.innerWidth < 1280) return Math.floor(Math.random() * 150) + 350;
       return Math.floor(Math.random() * 170) + 310;
     });
 
@@ -94,11 +96,14 @@ const Event = () => {
               columnsCountBreakPoints={{
                 350: 1,
                 640: 2,
-                768: 2,
+                768: 3,
                 1024: 3,
                 1280: 4,
+                1440: 4,
+                1600: 5,
                 1920: 5,
-                2560: 6,
+                2000: 5,
+                2560: 5,
               }}
             >
               <Masonry gutter="10px">

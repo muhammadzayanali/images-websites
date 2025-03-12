@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 import Header from "../componets/header";
 import { FaInstagram, FaLinkedin, FaFacebookF } from "react-icons/fa";
 
@@ -42,9 +42,12 @@ const Food = () => {
 
   useEffect(() => {
     const heights = images.map(() => {
-      if (window.innerWidth <= 425) return "auto"; // Preserve original height on small screens
+      if (window.innerWidth <= 425) return "auto"; 
       if (window.innerWidth >= 2560) return Math.floor(Math.random() * 250) + 550;
-      if (window.innerWidth >= 768 && window.innerWidth < 1280) return Math.floor(Math.random() * 200) + 400;
+      if (window.innerWidth >= 2000 && window.innerWidth < 2560) return Math.floor(Math.random() * 220) + 500;
+      if (window.innerWidth >= 1600 && window.innerWidth < 2000) return Math.floor(Math.random() * 200) + 480;
+      if (window.innerWidth >= 1440 && window.innerWidth < 1600) return Math.floor(Math.random() * 180) + 450;
+      if (window.innerWidth >= 768 && window.innerWidth < 1280) return Math.floor(Math.random() * 150) + 320;
       return Math.floor(Math.random() * 170) + 310;
     });
 
@@ -81,11 +84,14 @@ const Food = () => {
               columnsCountBreakPoints={{
                 350: 1,
                 640: 2,
-                768: 2,
+                768: 3,
                 1024: 3,
                 1280: 4,
+                1440: 4,
+                1600: 5,
                 1920: 5,
-                2560: 6,
+                2000: 5,
+                2560: 5,
               }}
             >
               <Masonry gutter="10px">

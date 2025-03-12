@@ -75,7 +75,7 @@ const Architecture = () => {
                 1024: 3,
                 1280: 4,
                 1920: 5,
-                2560: 6,
+                2560: 5,
               }}
             >
               <Masonry gutter="10px">
