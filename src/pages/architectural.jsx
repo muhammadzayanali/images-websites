@@ -19,7 +19,7 @@ const Architecture = () => {
 
   useEffect(() => {
     const heights = images.map(() => {
-      if (window.innerWidth <= 425) return "auto"; // Keep original height on small screens
+      if (window.innerWidth <= 425) return "auto";
       if (window.innerWidth >= 2560) return Math.floor(Math.random() * 400) + 500;
       return Math.floor(Math.random() * 290) + 305;
     });

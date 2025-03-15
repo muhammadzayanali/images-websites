@@ -43,7 +43,7 @@ const Portraits = () => {
       if (window.innerWidth >= 2560) return Math.floor(Math.random() * 250) + 550;
       if (window.innerWidth >= 2000 && window.innerWidth < 2560) return Math.floor(Math.random() * 220) + 500;
       if (window.innerWidth >= 1600 && window.innerWidth < 2000) return Math.floor(Math.random() * 200) + 480;
-      if (window.innerWidth >= 1440 && window.innerWidth < 1600) return Math.floor(Math.random() * 180) + 450;
+      if (window.innerWidth >= 1440 && window.innerWidth < 1600) return Math.floor(Math.random() * 180) + 350;
       if (window.innerWidth >= 768 && window.innerWidth < 1280) return Math.floor(Math.random() * 150) + 350;
       return Math.floor(Math.random() * 170) + 310;
     });

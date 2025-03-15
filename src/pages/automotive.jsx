@@ -52,8 +52,8 @@ const Event = () => {
     const heights = images.map(() => {
       if (window.innerWidth <= 425) return "auto";
       if (window.innerWidth >= 2560) return Math.floor(Math.random() * 250) + 550;
-      if (window.innerWidth >= 1920 && window.innerWidth < 2560) return Math.floor(Math.random() * 220) + 500;
-      if (window.innerWidth >= 1440 && window.innerWidth < 1920) return Math.floor(Math.random() * 200) + 450;
+      if (window.innerWidth >= 1920 && window.innerWidth < 2560) return Math.floor(Math.random() * 150) + 450;
+      if (window.innerWidth >= 1440 && window.innerWidth < 1920) return Math.floor(Math.random() * 200) + 350;
       if (window.innerWidth >= 768 && window.innerWidth < 1280) return Math.floor(Math.random() * 150) + 350;
       return Math.floor(Math.random() * 170) + 310;
     });
